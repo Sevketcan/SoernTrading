@@ -1,1 +1,1 @@
-Soern Trading App Web
+Soern Trading App Web Platforrm
