@@ -8,14 +8,133 @@ datasource db {
 }
 
 model User {
+  id             String   @id @default(cuid())
+  email          String   @unique
+  name           String?
+  password       String?
+  googleId       String?  @unique
+  avatar         String?
+  role           Role     @default(CLIENT)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  
+  // Relationships
+  emails         Email[]
+  labels         Label[]
+  replies        Reply[]
+  analyticsLogs  AnalyticsLog[]
+  unsubscribeRequests UnsubscribeRequest[]
+  
+  @@map("users")
+}
+
+model Email {
+  id          String   @id @default(cuid())
+  userId      String
+  subject     String
+  body        String   @db.Text
+  fromEmail   String
+  fromName    String?
+  toEmail     String
+  labels      String[] @default([])
+  receivedAt  DateTime
+  isArchived  Boolean  @default(false)
+  isReplied   Boolean  @default(false)
+  isRead      Boolean  @default(false)
+  threadId    String?
+  messageId   String   @unique
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relationships
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  replies     Reply[]
+  unsubscribeRequests UnsubscribeRequest[]
+  
+  @@map("emails")
+}
+
+model Label {
   id        String   @id @default(cuid())
-  email     String   @unique
-  password  String
-  role      Role     @default(CLIENT)
+  name      String
+  color     String   @default("#3B82F6")
+  userId    String
   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Relationships
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@unique([name, userId])
+  @@map("labels")
+}
+
+model Reply {
+  id           String   @id @default(cuid())
+  emailId      String
+  userId       String
+  body         String   @db.Text
+  sentAt       DateTime @default(now())
+  aiGenerated  Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  // Relationships
+  email        Email    @relation(fields: [emailId], references: [id], onDelete: Cascade)
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("replies")
+}
+
+model UnsubscribeRequest {
+  id          String              @id @default(cuid())
+  emailId     String
+  userId      String
+  status      UnsubscribeStatus   @default(PENDING)
+  processedAt DateTime?
+  errorMessage String?
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
+  
+  // Relationships
+  email       Email               @relation(fields: [emailId], references: [id], onDelete: Cascade)
+  user        User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("unsubscribe_requests")
+}
+
+model AnalyticsLog {
+  id         String      @id @default(cuid())
+  userId     String
+  actionType ActionType
+  metadata   Json?
+  createdAt  DateTime    @default(now())
+  
+  // Relationships
+  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("analytics_logs")
 }
 
 enum Role {
   ADMIN
   CLIENT
+}
+
+enum UnsubscribeStatus {
+  PENDING
+  SUCCESS
+  FAILED
+  PROCESSING
+}
+
+enum ActionType {
+  EMAIL_RECEIVED
+  EMAIL_REPLIED
+  EMAIL_ARCHIVED
+  EMAIL_LABELED
+  UNSUBSCRIBE_REQUESTED
+  AI_REPLY_GENERATED
+  LOGIN
+  LOGOUT
 }

@@ -1,0 +1,155 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  CLIENT
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String? // For email/password auth
+  name      String?
+  avatar    String?
+  role      Role     @default(CLIENT)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Google OAuth
+  googleId String? @unique
+
+  // Email management
+  emails              Email[]
+  labels              Label[]
+  replies             Reply[]
+  unsubscribeRequests UnsubscribeRequest[]
+  analyticsLogs       AnalyticsLog[]
+
+  @@map("users")
+}
+
+model Email {
+  id         String   @id @default(cuid())
+  userId     String
+  subject    String
+  body       String
+  fromEmail  String
+  fromName   String?
+  toEmail    String
+  labels     String[] @default([])
+  receivedAt DateTime
+  isArchived Boolean  @default(false)
+  isReplied  Boolean  @default(false)
+  isRead     Boolean  @default(false)
+  threadId   String?
+  messageId  String   @unique
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  // Relations
+  user                User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+  replies             Reply[]
+  unsubscribeRequests UnsubscribeRequest[]
+  analyticsLogs       AnalyticsLog[]
+
+  @@index([userId])
+  @@index([messageId])
+  @@index([receivedAt])
+  @@index([isArchived])
+  @@index([isRead])
+  @@map("emails")
+}
+
+model Label {
+  id        String   @id @default(cuid())
+  name      String
+  color     String   @default("#3B82F6")
+  userId    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([name, userId])
+  @@index([userId])
+  @@map("labels")
+}
+
+model Reply {
+  id          String    @id @default(cuid())
+  emailId     String
+  userId      String
+  body        String
+  sentAt      DateTime?
+  aiGenerated Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // Relations
+  email Email @relation(fields: [emailId], references: [id], onDelete: Cascade)
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([emailId])
+  @@index([userId])
+  @@map("replies")
+}
+
+model UnsubscribeRequest {
+  id           String                   @id @default(cuid())
+  emailId      String
+  userId       String
+  status       UnsubscribeRequestStatus @default(PENDING)
+  attempt      Int                      @default(0)
+  lastAttempt  DateTime?
+  error        String?
+  errorMessage String?
+  processedAt  DateTime?
+  createdAt    DateTime                 @default(now())
+  updatedAt    DateTime                 @updatedAt
+
+  // Relations
+  email Email @relation(fields: [emailId], references: [id], onDelete: Cascade)
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([status])
+  @@map("unsubscribe_requests")
+}
+
+enum UnsubscribeRequestStatus {
+  PENDING
+  PROCESSING
+  SUCCESS
+  FAILED
+  RETRY
+}
+
+model AnalyticsLog {
+  id         String   @id @default(cuid())
+  userId     String?
+  emailId    String?
+  action     String
+  actionType String
+  data       Json?
+  createdAt  DateTime @default(now())
+
+  // Relations
+  user  User?  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  email Email? @relation(fields: [emailId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([action])
+  @@index([createdAt])
+  @@map("analytics_logs")
+}
