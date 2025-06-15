@@ -1,0 +1,25 @@
+/* Footer Layout Styles */
+
+.footer {
+    @apply bg-gray-50 border-t border-gray-200;
+}
+
+.footerDark {
+    @apply bg-gray-900 border-gray-700;
+}
+
+.container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8;
+}
+
+.content {
+    @apply text-center;
+}
+
+.copyright {
+    @apply text-sm text-gray-600;
+}
+
+.copyrightDark {
+    @apply text-gray-400;
+}

@@ -1,0 +1,158 @@
+/* Header Component Styles */
+
+.header {
+    @apply bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50;
+}
+
+.headerDark {
+    @apply bg-gray-900 border-gray-700;
+}
+
+.container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.nav {
+    @apply flex justify-between items-center h-16;
+}
+
+/* Logo Section */
+.logoContainer {
+    @apply flex-shrink-0;
+}
+
+.logoLink {
+    @apply text-2xl font-bold text-blue-600 hover:text-blue-700 transition-colors;
+}
+
+.logoLinkDark {
+    @apply text-blue-400 hover:text-blue-300;
+}
+
+/* Desktop Navigation */
+.desktopNav {
+    @apply hidden md:flex items-center space-x-8;
+}
+
+.navLink {
+    @apply text-gray-700 hover:text-blue-600 font-medium transition-colors;
+}
+
+.navLinkDark {
+    @apply text-gray-300 hover:text-blue-400;
+}
+
+/* Auth Section */
+.authSection {
+    @apply hidden md:flex items-center space-x-4;
+}
+
+.userGreeting {
+    @apply text-sm text-gray-600;
+}
+
+.userGreetingDark {
+    @apply text-gray-400;
+}
+
+.panelButton {
+    @apply flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md font-medium transition-colors;
+}
+
+.panelButtonDark {
+    @apply bg-blue-500 hover:bg-blue-600;
+}
+
+.logoutButton {
+    @apply flex items-center space-x-2 text-gray-700 hover:text-red-600 px-3 py-2 font-medium transition-colors;
+}
+
+.logoutButtonDark {
+    @apply text-gray-300 hover:text-red-400;
+}
+
+.loginButton {
+    @apply bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md font-medium transition-colors;
+}
+
+.loginButtonDark {
+    @apply bg-blue-500 hover:bg-blue-600;
+}
+
+/* Mobile Menu */
+.mobileMenuButton {
+    @apply md:hidden text-gray-700 hover:text-blue-600 p-2;
+}
+
+.mobileMenuButtonDark {
+    @apply text-gray-300 hover:text-blue-400;
+}
+
+.mobileMenu {
+    @apply md:hidden border-t border-gray-200 py-4;
+}
+
+.mobileMenuDark {
+    @apply border-gray-700;
+}
+
+.mobileMenuList {
+    @apply space-y-2;
+}
+
+.mobileNavLink {
+    @apply block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-blue-600 font-medium transition-colors;
+}
+
+.mobileNavLinkDark {
+    @apply text-gray-300 hover:bg-gray-800 hover:text-blue-400;
+}
+
+.mobileAuthSection {
+    @apply border-t border-gray-200 pt-4;
+}
+
+.mobileAuthSectionDark {
+    @apply border-gray-700;
+}
+
+.mobileUserGreeting {
+    @apply px-4 py-2 text-sm text-gray-600;
+}
+
+.mobileUserGreetingDark {
+    @apply text-gray-400;
+}
+
+.mobilePanelButton {
+    @apply flex items-center space-x-2 mx-4 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md font-medium transition-colors;
+}
+
+.mobilePanelButtonDark {
+    @apply bg-blue-500 hover:bg-blue-600;
+}
+
+.mobileLogoutButton {
+    @apply flex items-center space-x-2 w-full text-left mx-4 mt-2 text-gray-700 hover:text-red-600 px-4 py-2 font-medium transition-colors;
+}
+
+.mobileLogoutButtonDark {
+    @apply text-gray-300 hover:text-red-400;
+}
+
+.mobileLoginButton {
+    @apply block mx-4 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md font-medium text-center transition-colors;
+}
+
+.mobileLoginButtonDark {
+    @apply bg-blue-500 hover:bg-blue-600;
+}
+
+/* Icon Styles */
+.icon {
+    @apply h-4 w-4;
+}
+
+.menuIcon {
+    @apply h-6 w-6;
+}

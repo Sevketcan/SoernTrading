@@ -4,10 +4,15 @@ import Link from "next/link";
 import { useAuth } from "@/lib/hooks";
 import { Settings, LogOut, Menu, X } from "lucide-react";
 import { useState } from "react";
+import { useTheme } from "next-themes";
+import styles from "@/styles/components/Header.module.css";
 
 export default function Header() {
     const { user, isAuthenticated, logout } = useAuth();
+    const { theme } = useTheme();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+    const isDark = theme === 'dark';
 
     const handleLogout = async () => {
         try {
@@ -22,65 +27,72 @@ export default function Header() {
         setIsMobileMenuOpen(!isMobileMenuOpen);
     };
 
+    // Helper function to combine classes
+    const cx = (...classes: (string | boolean | undefined | null)[]) =>
+        classes.filter(Boolean).join(' ');
+
     return (
-        <header className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex justify-between items-center h-16">
+        <header className={cx(styles.header, isDark ? styles.headerDark : '')}>
+            <div className={styles.container}>
+                <div className={styles.nav}>
                     {/* Logo */}
-                    <div className="flex-shrink-0">
-                        <Link href="/" className="text-2xl font-bold text-blue-600 hover:text-blue-700 transition-colors">
+                    <div className={styles.logoContainer}>
+                        <Link
+                            href="/"
+                            className={cx(styles.logoLink, isDark ? styles.logoLinkDark : '')}
+                        >
                             InboxZero
                         </Link>
                     </div>
 
                     {/* Desktop Navigation */}
-                    <nav className="hidden md:flex items-center space-x-8">
+                    <nav className={styles.desktopNav}>
                         <Link
                             href="/solutions"
-                            className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+                            className={cx(styles.navLink, isDark ? styles.navLinkDark : '')}
                         >
                             Solutions
                         </Link>
                         <Link
                             href="/enterprise"
-                            className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+                            className={cx(styles.navLink, isDark ? styles.navLinkDark : '')}
                         >
                             Enterprise
                         </Link>
                         <Link
                             href="/pricing"
-                            className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+                            className={cx(styles.navLink, isDark ? styles.navLinkDark : '')}
                         >
                             Pricing
                         </Link>
                     </nav>
 
                     {/* Auth Section */}
-                    <div className="hidden md:flex items-center space-x-4">
+                    <div className={styles.authSection}>
                         {isAuthenticated ? (
                             <>
-                                <span className="text-sm text-gray-600">
+                                <span className={cx(styles.userGreeting, isDark ? styles.userGreetingDark : '')}>
                                     Merhaba, {user?.name || user?.email?.split('@')[0]}
                                 </span>
                                 <Link
                                     href="/inbox"
-                                    className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md font-medium transition-colors"
+                                    className={cx(styles.panelButton, isDark ? styles.panelButtonDark : '')}
                                 >
-                                    <Settings className="h-4 w-4" />
+                                    <Settings className={styles.icon} />
                                     <span>Panel</span>
                                 </Link>
                                 <button
                                     onClick={handleLogout}
-                                    className="flex items-center space-x-2 text-gray-700 hover:text-red-600 px-3 py-2 font-medium transition-colors"
+                                    className={cx(styles.logoutButton, isDark ? styles.logoutButtonDark : '')}
                                 >
-                                    <LogOut className="h-4 w-4" />
+                                    <LogOut className={styles.icon} />
                                     <span>Çıkış</span>
                                 </button>
                             </>
                         ) : (
                             <Link
                                 href="/login"
-                                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md font-medium transition-colors"
+                                className={cx(styles.loginButton, isDark ? styles.loginButtonDark : '')}
                             >
                                 Giriş Yap
                             </Link>
@@ -88,55 +100,58 @@ export default function Header() {
                     </div>
 
                     {/* Mobile Menu Button */}
-                    <div className="md:hidden">
+                    <div>
                         <button
                             onClick={toggleMobileMenu}
-                            className="text-gray-700 hover:text-blue-600 p-2"
+                            className={cx(styles.mobileMenuButton, isDark ? styles.mobileMenuButtonDark : '')}
                             aria-label="Toggle menu"
                         >
-                            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                            {isMobileMenuOpen ?
+                                <X className={styles.menuIcon} /> :
+                                <Menu className={styles.menuIcon} />
+                            }
                         </button>
                     </div>
                 </div>
 
                 {/* Mobile Menu */}
                 {isMobileMenuOpen && (
-                    <div className="md:hidden border-t border-gray-200 py-4">
-                        <div className="space-y-2">
+                    <div className={cx(styles.mobileMenu, isDark ? styles.mobileMenuDark : '')}>
+                        <div className={styles.mobileMenuList}>
                             <Link
                                 href="/solutions"
-                                className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-blue-600 font-medium transition-colors"
+                                className={cx(styles.mobileNavLink, isDark ? styles.mobileNavLinkDark : '')}
                                 onClick={() => setIsMobileMenuOpen(false)}
                             >
                                 Solutions
                             </Link>
                             <Link
                                 href="/enterprise"
-                                className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-blue-600 font-medium transition-colors"
+                                className={cx(styles.mobileNavLink, isDark ? styles.mobileNavLinkDark : '')}
                                 onClick={() => setIsMobileMenuOpen(false)}
                             >
                                 Enterprise
                             </Link>
                             <Link
                                 href="/pricing"
-                                className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-blue-600 font-medium transition-colors"
+                                className={cx(styles.mobileNavLink, isDark ? styles.mobileNavLinkDark : '')}
                                 onClick={() => setIsMobileMenuOpen(false)}
                             >
                                 Pricing
                             </Link>
 
-                            <div className="border-t border-gray-200 pt-4">
+                            <div className={cx(styles.mobileAuthSection, isDark ? styles.mobileAuthSectionDark : '')}>
                                 {isAuthenticated ? (
                                     <>
-                                        <div className="px-4 py-2 text-sm text-gray-600">
+                                        <div className={cx(styles.mobileUserGreeting, isDark ? styles.mobileUserGreetingDark : '')}>
                                             Merhaba, {user?.name || user?.email?.split('@')[0]}
                                         </div>
                                         <Link
                                             href="/inbox"
-                                            className="flex items-center space-x-2 mx-4 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md font-medium transition-colors"
+                                            className={cx(styles.mobilePanelButton, isDark ? styles.mobilePanelButtonDark : '')}
                                             onClick={() => setIsMobileMenuOpen(false)}
                                         >
-                                            <Settings className="h-4 w-4" />
+                                            <Settings className={styles.icon} />
                                             <span>Panel</span>
                                         </Link>
                                         <button
@@ -144,16 +159,16 @@ export default function Header() {
                                                 handleLogout();
                                                 setIsMobileMenuOpen(false);
                                             }}
-                                            className="flex items-center space-x-2 w-full text-left mx-4 mt-2 text-gray-700 hover:text-red-600 px-4 py-2 font-medium transition-colors"
+                                            className={cx(styles.mobileLogoutButton, isDark ? styles.mobileLogoutButtonDark : '')}
                                         >
-                                            <LogOut className="h-4 w-4" />
+                                            <LogOut className={styles.icon} />
                                             <span>Çıkış</span>
                                         </button>
                                     </>
                                 ) : (
                                     <Link
                                         href="/login"
-                                        className="block mx-4 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md font-medium text-center transition-colors"
+                                        className={cx(styles.mobileLoginButton, isDark ? styles.mobileLoginButtonDark : '')}
                                         onClick={() => setIsMobileMenuOpen(false)}
                                     >
                                         Giriş Yap
