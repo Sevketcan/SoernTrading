@@ -1,63 +1,163 @@
 /* Common Button Styles */
 
 /* Primary Button */
-.btnPrimary {
-    @apply inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200;
+.primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border: 1px solid transparent;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 0.375rem;
+    color: white;
+    background-color: #2563eb;
+    transition-property: background-color, border-color;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
 }
 
-.btnPrimaryDark {
-    @apply bg-blue-500 hover:bg-blue-600 focus:ring-blue-400;
+.primary:hover {
+    background-color: #1d4ed8;
+}
+
+.primary:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #fff, 0 0 0 4px #3b82f6;
+}
+
+.primaryDark {
+    background-color: #3b82f6;
+}
+
+.primaryDark:hover {
+    background-color: #2563eb;
+}
+
+.primaryDark:focus {
+    box-shadow: 0 0 0 2px #1f2937, 0 0 0 4px #60a5fa;
 }
 
 /* Secondary Button */
-.btnSecondary {
-    @apply inline-flex items-center justify-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200;
+.secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border: 1px solid #d1d5db;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 0.375rem;
+    color: #374151;
+    background-color: white;
 }
 
-.btnSecondaryDark {
-    @apply border-gray-600 text-gray-300 bg-gray-800 hover:bg-gray-700 focus:ring-blue-400;
+.secondary:hover {
+    background-color: #f9fafb;
+}
+
+.secondary:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #fff, 0 0 0 4px #3b82f6;
+}
+
+.secondaryDark {
+    border-color: #4b5563;
+    color: #d1d5db;
+    background-color: #1f2937;
+}
+
+.secondaryDark:hover {
+    background-color: #374151;
+}
+
+.secondaryDark:focus {
+    box-shadow: 0 0 0 2px #1f2937, 0 0 0 4px #60a5fa;
 }
 
 /* Danger Button */
-.btnDanger {
-    @apply inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200;
+.danger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border: 1px solid transparent;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 0.375rem;
+    color: white;
+    background-color: #dc2626;
 }
 
-.btnDangerDark {
-    @apply bg-red-500 hover:bg-red-600 focus:ring-red-400;
+.danger:hover {
+    background-color: #b91c1c;
+}
+
+.danger:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #fff, 0 0 0 4px #ef4444;
+}
+
+.dangerDark {
+    background-color: #ef4444;
+}
+
+.dangerDark:hover {
+    background-color: #dc2626;
+}
+
+.dangerDark:focus {
+    box-shadow: 0 0 0 2px #1f2937, 0 0 0 4px #f87171;
 }
 
 /* Button Sizes */
-.btnSmall {
-    @apply px-3 py-1.5 text-xs;
+.small {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.75rem;
 }
 
-.btnMedium {
-    @apply px-4 py-2 text-sm;
+.medium {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
 }
 
-.btnLarge {
-    @apply px-6 py-3 text-base;
+.large {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
 }
 
-/* Button States */
-.btnLoading {
-    @apply opacity-50 cursor-not-allowed;
+/* Disabled State */
+.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
-.btnDisabled {
-    @apply opacity-50 cursor-not-allowed;
+.disabledDark {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 /* Icon Button */
-.btnIcon {
-    @apply p-2 rounded-md transition-colors duration-200;
+.icon {
+    padding: 0.5rem;
+    border-radius: 0.375rem;
+    transition-property: background-color;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
 }
 
-.btnIconPrimary {
-    @apply text-blue-600 hover:bg-blue-50;
+.iconPrimary {
+    color: #2563eb;
 }
 
-.btnIconPrimaryDark {
-    @apply text-blue-400 hover:bg-gray-800;
+.iconPrimary:hover {
+    background-color: #eff6ff;
+}
+
+.iconPrimaryDark {
+    color: #60a5fa;
+}
+
+.iconPrimaryDark:hover {
+    background-color: #1f2937;
 }

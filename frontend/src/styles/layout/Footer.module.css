@@ -1,25 +1,33 @@
-/* Footer Layout Styles */
-
+/* Footer Component Styles */
 .footer {
-    @apply bg-gray-50 border-t border-gray-200;
+    background-color: #f9fafb;
+    border-top: 1px solid #e5e7eb;
 }
 
 .footerDark {
-    @apply bg-gray-900 border-gray-700;
+    background-color: #111827;
+    border-color: #374151;
 }
 
 .container {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8;
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 .content {
-    @apply text-center;
+    text-align: center;
 }
 
-.copyright {
-    @apply text-sm text-gray-600;
+.text {
+    font-size: 0.875rem;
+    color: #4b5563;
 }
 
-.copyrightDark {
-    @apply text-gray-400;
+.textDark {
+    color: #9ca3af;
 }

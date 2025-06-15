@@ -1,140 +1,257 @@
 /* Home Page Styles */
-
-.container {
-    @apply bg-white pt-4;
+.main {
+    background-color: white;
+    padding-top: 1rem;
 }
 
-.containerDark {
-    @apply bg-gray-900;
+.mainDark {
+    background-color: #111827;
 }
 
 /* Hero Section */
-.heroSection {
-    @apply py-16 px-4 sm:px-6 lg:px-8;
+.hero {
+    padding: 4rem 1rem;
+}
+
+@media (min-width: 640px) {
+    .hero {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .hero {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
 }
 
 .heroContent {
-    @apply max-w-4xl mx-auto text-center;
+    max-width: 56rem;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
 
 .heroTitle {
-    @apply text-4xl font-bold text-gray-900 sm:text-5xl lg:text-6xl;
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+@media (min-width: 640px) {
+    .heroTitle {
+        font-size: 3rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .heroTitle {
+        font-size: 3.75rem;
+    }
 }
 
 .heroTitleDark {
-    @apply text-white;
+    color: white;
 }
 
-.heroDescription {
-    @apply mt-6 text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed;
+.heroText {
+    margin-top: 1.5rem;
+    font-size: 1.25rem;
+    color: #4b5563;
+    max-width: 48rem;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.625;
 }
 
-.heroDescriptionDark {
-    @apply text-gray-300;
+.heroTextDark {
+    color: #d1d5db;
 }
 
 /* Features Section */
-.featuresSection {
-    @apply py-16 bg-gray-50;
+.features {
+    padding: 4rem 0;
+    background-color: #f9fafb;
 }
 
-.featuresSectionDark {
-    @apply bg-gray-800;
+.featuresDark {
+    background-color: #1f2937;
 }
 
 .featuresContainer {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+    .featuresContainer {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .featuresContainer {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
 }
 
 .featuresGrid {
-    @apply grid grid-cols-1 md:grid-cols-3 gap-8;
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .featuresGrid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
 }
 
 .featureCard {
-    @apply text-center;
-}
-
-.featureIconContainer {
-    @apply flex justify-center mb-4;
+    text-align: center;
 }
 
 .featureIcon {
-    @apply p-3 rounded-lg;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
 }
 
-.featureIconBlue {
-    @apply bg-blue-100;
+.iconWrapper {
+    padding: 0.75rem;
+    border-radius: 0.5rem;
 }
 
-.featureIconBlueDark {
-    @apply bg-blue-900;
+.iconWrapperBlue {
+    background-color: #dbeafe;
 }
 
-.featureIconGreen {
-    @apply bg-green-100;
+.iconWrapperBlueDark {
+    background-color: #1e3a8a;
 }
 
-.featureIconGreenDark {
-    @apply bg-green-900;
+.iconWrapperGreen {
+    background-color: #dcfce7;
 }
 
-.featureIconPurple {
-    @apply bg-purple-100;
+.iconWrapperGreenDark {
+    background-color: #14532d;
 }
 
-.featureIconPurpleDark {
-    @apply bg-purple-900;
+.iconWrapperPurple {
+    background-color: #f3e8ff;
+}
+
+.iconWrapperPurpleDark {
+    background-color: #581c87;
 }
 
 .featureTitle {
-    @apply text-xl font-semibold text-gray-900 mb-2;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 0.5rem;
 }
 
 .featureTitleDark {
-    @apply text-white;
+    color: white;
 }
 
-.featureDescription {
-    @apply text-gray-600;
+.featureText {
+    color: #4b5563;
 }
 
-.featureDescriptionDark {
-    @apply text-gray-300;
+.featureTextDark {
+    color: #d1d5db;
 }
 
 /* CTA Section */
-.ctaSection {
-    @apply py-16 bg-blue-600;
+.cta {
+    padding: 4rem 0;
+    background-color: #2563eb;
 }
 
-.ctaSectionDark {
-    @apply bg-blue-800;
+.ctaDark {
+    background-color: #1e40af;
 }
 
 .ctaContainer {
-    @apply max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8;
+    max-width: 56rem;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+    .ctaContainer {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .ctaContainer {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
 }
 
 .ctaTitle {
-    @apply text-3xl font-bold text-white sm:text-4xl;
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: white;
 }
 
-.ctaDescription {
-    @apply mt-4 text-xl text-blue-100;
+@media (min-width: 640px) {
+    .ctaTitle {
+        font-size: 2.25rem;
+    }
 }
 
-.ctaDescriptionDark {
-    @apply text-blue-200;
+.ctaText {
+    margin-top: 1rem;
+    font-size: 1.25rem;
+    color: #bfdbfe;
 }
 
-.ctaButtonContainer {
-    @apply mt-8;
+.ctaTextDark {
+    color: #93c5fd;
+}
+
+.ctaButtons {
+    margin-top: 2rem;
 }
 
 .ctaButton {
-    @apply bg-white text-blue-600 px-8 py-3 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors;
+    background-color: white;
+    color: #2563eb;
+    padding: 0.75rem 2rem;
+    border-radius: 0.5rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    transition-property: background-color;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+
+.ctaButton:hover {
+    background-color: #f9fafb;
 }
 
 .ctaButtonDark {
-    @apply bg-gray-100 text-blue-800 hover:bg-gray-200;
+    background-color: #f9fafb;
+    color: #1e40af;
+}
+
+.ctaButtonDark:hover {
+    background-color: #f3f4f6;
 }

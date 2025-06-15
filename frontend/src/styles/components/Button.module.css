@@ -1,9 +1,23 @@
-/* Example Button.module.css using Tailwind @apply */
-
-.btn {
-    @apply bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors;
+/* Button Component Styles */
+.button {
+    background-color: #2563eb;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    transition-property: background-color;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
 }
 
-.btnSecondary {
-    @apply bg-gray-200 text-gray-800 hover:bg-gray-300;
+.button:hover {
+    background-color: #1d4ed8;
+}
+
+.buttonSecondary {
+    background-color: #e5e7eb;
+    color: #1f2937;
+}
+
+.buttonSecondary:hover {
+    background-color: #d1d5db;
 }
