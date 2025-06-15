@@ -1,0 +1,9 @@
+/* Example Button.module.css using Tailwind @apply */
+
+.btn {
+    @apply bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors;
+}
+
+.btnSecondary {
+    @apply bg-gray-200 text-gray-800 hover:bg-gray-300;
+}

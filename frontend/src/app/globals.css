@@ -1,4 +1,12 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .container {
+    @apply mx-auto px-4 max-w-7xl;
+  }
+}
 
 /* CSS Reset & Base Styles */
 :root {
